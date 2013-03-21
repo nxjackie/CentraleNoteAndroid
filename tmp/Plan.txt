@@ -1,0 +1,43 @@
+Accueil
+
+Connexion à un compte qui lie à différents cercles
+
+
+
+
+Vue 1
+Accueil avec les différents cercles liés
+
+Vue 2
+Ecran d'ajout d'un cercle au profil
+
+Vue 3
+Ecran de création d'un cercle
+
+
+
+Une fois dans un cercle
+
+Vue 1
+Tableau avec les états de comptes (tri par nom ou état du compte)
+Lien des prénoms vers un détail perso
+Somme de vérification et somme totale en transit
+Les transactions sont supprimables ou réactivables
+
+
+Vue 2
+Détails pour une personne (page accessible depuis n'importe quel nom qui sera un lien)
+Les transactions sont supprimables ou réactivables
+
+Vue 3
+Détails généraux, toutes les transaction avec dates, protagonistes, montant, commentaires, ip
+Les noms sont cliquables et les transactions supprimables ou réactivables
+
+Vue 4
+Ajout d'une transaction, commentaire, montant, personne qui avance, personnes qui bénéficient de cette transaction.
+Extensions :
+Faire plusieurs modes :
+	• Avance à plusieurs personnes (ajout interactif) avec chacun un montant
+	• Avance à plusieurs personnes avec un montant fixe (checkbox)
+	• Répartition d'une somme équitablement entre plusieurs personnes (checkbox avec le nom de celui qui avance dans la liste)
+	• Répartition d'une somme entre plusieurs personnes avec pondération (ajout interactif)
