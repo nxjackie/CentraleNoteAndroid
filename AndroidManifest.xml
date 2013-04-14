@@ -7,7 +7,8 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="17" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -24,13 +25,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="daron.centralenoteandroid.LoginActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.LOGIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name="daron.centralenoteandroid.DebtsTableActivity"
+            android:label="@string/title_activity_debts_table" >
+        </activity>
+        <activity
+            android:name="daron.centralenoteandroid.AddPersonActivity"
+            android:label="@string/title_activity_add_person" >
+        </activity>
+        <activity
+            android:name="daron.centralenoteandroid.AddTransactionActivity"
+            android:label="@string/title_activity_add_transaction" >
+        </activity>
+        <activity
+            android:name="daron.centralenoteandroid.DetailsActivity"
+            android:label="@string/title_activity_details" >
         </activity>
     </application>
 

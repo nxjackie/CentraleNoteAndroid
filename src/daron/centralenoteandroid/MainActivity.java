@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 		
 		
 		
-		Intent i = new Intent(this, LoginActivity.class);
+		Intent i = new Intent(this, DebtsTableActivity.class);
 		startActivity(i); 
 		
 		
