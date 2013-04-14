@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:weightSum="8" >
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -12,33 +13,37 @@
 
     <ScrollView
         android:id="@+id/scrollViewMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="@null" >
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="@null"
+        android:layout_weight="1" >
 
         <TableLayout
             android:id="@+id/tableLayoutMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
-
         </TableLayout>
     </ScrollView>
    	<LinearLayout
 	    android:orientation="horizontal"
 	    android:layout_width="fill_parent"
-	    android:layout_height="fill_parent" >
+	    android:layout_height="match_parent"
+	    android:layout_weight="7" >
 	    
 	    <Button 
 		    android:id="@+id/button_add_person"
 		    android:layout_width="wrap_content"
 		    android:layout_height="fill_parent"
-		    android:text="Ajouter une personne" />
+		    android:text="Ajouter une personne"
+		    android:layout_weight="1" />
 	     
 	    <Button 
 		    android:id="@+id/button_add_transaction"
 		    android:layout_width="wrap_content"
 		    android:layout_height="fill_parent"
-		    android:text="Ajouter une transaction" />
+		    android:text="Ajouter une transaction"
+		    android:layout_weight="1" />
+	    
 	</LinearLayout>
 
 </LinearLayout>

@@ -20,14 +20,6 @@ public class DebtsTableActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_debts_table);
 		
-		// Fill Table
-		TableLayout tl=(TableLayout)findViewById(R.id.tableLayoutMain);    
-		TableRow tr1 = new TableRow(this);
-		TextView textview = new TextView(this);
-		textview.setText("Coucou");
-		tr1.addView(textview);
-		tl.addView(tr1);
-		
 		AddPersonButton = (Button)findViewById(R.id.button_add_person);
 		AddTransactionButton = (Button)findViewById(R.id.button_add_transaction);
 		
@@ -47,6 +39,15 @@ public class DebtsTableActivity extends Activity {
 	        }
 	      });
 		
+		// Fill Table
+		TableLayout tl = (TableLayout)findViewById(R.id.tableLayoutMain);
+		for (int i = 0; i < 15; i++) {
+			TableRow tr = new TableRow(this);
+			TextView textview = new TextView(this);
+			textview.setText("coucou");
+			tr.addView(textview);
+			tl.addView(tr);
+		}
 		
 		
 	}
