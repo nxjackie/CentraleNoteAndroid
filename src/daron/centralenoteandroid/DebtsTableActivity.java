@@ -1,5 +1,8 @@
 package daron.centralenoteandroid;
 
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +12,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import daron.centralenoteandroid.JsonRequests.GetDebtsTable;
 
 public class DebtsTableActivity extends Activity {
 	
@@ -39,17 +43,24 @@ public class DebtsTableActivity extends Activity {
 	        }
 	      });
 		
-		// Fill Table
-		TableLayout tl = (TableLayout)findViewById(R.id.tableLayoutMain);
-		for (int i = 0; i < 15; i++) {
-			TableRow tr = new TableRow(this);
-			TextView textview = new TextView(this);
-			textview.setText("coucou");
-			tr.addView(textview);
-			tl.addView(tr);
+	    try {
+			List<User> users = new GetDebtsTable().execute("http://centralenote.campus.ecp.fr/api/user.php").get();
+			// Fill Table
+			TableLayout tl = (TableLayout)findViewById(R.id.tableLayoutMain);
+			for (User user : users) {
+				TableRow tr = new TableRow(this);
+				TextView textview = new TextView(this);
+				textview.setText(user.getName());
+				tr.addView(textview);
+				tl.addView(tr);
+			}	
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		
 	}
 
 	
