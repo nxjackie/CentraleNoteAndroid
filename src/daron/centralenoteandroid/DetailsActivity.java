@@ -16,6 +16,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import daron.centralenoteandroid.JsonRequests.GetStringFromUrl;
 import daron.centralenoteandroid.JsonRequests.GetTransactionTable;
 import daron.centralenoteandroid.Model.Transaction;
 
@@ -46,6 +47,13 @@ public class DetailsActivity extends Activity {
 		String id = intent.getStringExtra("id");
 		
 		try {
+			
+			String name = new GetStringFromUrl().execute("http://centralenote.campus.ecp.fr/api/name.php?n=" + id).get();
+			
+			TextView text = (TextView) findViewById(R.id.detail_name);
+			text.setText(name);
+			
+			
 			List<Transaction> transactions = new GetTransactionTable().execute("http://centralenote.campus.ecp.fr/api/details.php?n="+id).get();
 			
 			// Fill Table

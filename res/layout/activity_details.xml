@@ -7,17 +7,32 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DetailsActivity" >
-
-    <TextView
-        android:id="@+id/textView1"
+    <Button
+        android:id="@+id/back_to_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
- <ScrollView
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/retour" />
+
+    <TextView
+        android:id="@+id/detail_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ScrollView
         android:id="@+id/scrollViewDetails"
         android:layout_width="match_parent"
         android:layout_height="192dp"
-        android:layout_gravity="center"
+        android:layout_above="@+id/back_to_main"
+        android:layout_alignLeft="@+id/back_to_main"
+        android:layout_below="@+id/detail_name"
+        android:layout_marginTop="10dp"
         android:layout_weight="5.44"
         android:clickable="true"
         android:minWidth="200dp"
@@ -28,17 +43,8 @@
             android:id="@+id/tableLayoutDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minWidth="32dip">
-
+            android:minWidth="32dip" >
         </TableLayout>
     </ScrollView>
-    <Button
-        android:id="@+id/back_to_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/retour" />
 
 </RelativeLayout>
