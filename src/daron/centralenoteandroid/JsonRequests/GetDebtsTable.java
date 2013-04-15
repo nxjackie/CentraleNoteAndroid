@@ -15,16 +15,28 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import daron.centralenoteandroid.Model.User;
 
 public class GetDebtsTable extends AsyncTask<String, List<String>, List<User>> {
 
 	List<User> userList = new ArrayList<User>();
+	private ProgressDialog _dialog;
+	private Context _context;
+	
+    public GetDebtsTable(Activity activity) {
+        _context = activity;
+        _dialog = new ProgressDialog(_context);
+    }
 	 
 	@Override
 	protected void onPreExecute() {
 	    super.onPreExecute();
+	    _dialog.setMessage("Chargement en cours...");
+	    _dialog.show();
 	}
 	
 	@Override
@@ -80,6 +92,7 @@ public class GetDebtsTable extends AsyncTask<String, List<String>, List<User>> {
 	
 	@Override
 	protected void onPostExecute(List<User> users) {
+		_dialog.dismiss();
 	}
 }
 	

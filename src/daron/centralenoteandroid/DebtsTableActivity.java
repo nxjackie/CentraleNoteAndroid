@@ -45,7 +45,7 @@ public class DebtsTableActivity extends Activity {
 	      });
 
 	    try {
-			List<User> users = new GetDebtsTable().execute("http://centralenote.campus.ecp.fr/api/user.php").get();
+			List<User> users = new GetDebtsTable(DebtsTableActivity.this).execute("http://centralenote.campus.ecp.fr/api/user.php").get();
 			
 			// Fill Table
 			TableLayout tl = (TableLayout)findViewById(R.id.tableLayoutMain);
