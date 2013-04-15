@@ -12,7 +12,7 @@
         android:id="@+id/name_new_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
+        android:layout_alignLeft="@+id/textView1"
         android:layout_alignRight="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="46dp"
@@ -34,16 +34,17 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignParentBottom="true"
+        android:height="100dp"
         android:text="@string/retour" />
 
     <Button
         android:id="@+id/add_new_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/button_return_home_from_person"
         android:layout_alignLeft="@+id/button_return_home_from_person"
         android:layout_alignRight="@+id/button_return_home_from_person"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="62dp"
+        android:layout_marginBottom="47dp"
         android:height="100dp"
         android:text="@string/ajouter" />
 

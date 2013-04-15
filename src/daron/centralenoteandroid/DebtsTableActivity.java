@@ -39,12 +39,15 @@ public class DebtsTableActivity extends Activity {
 	        }
 	      });
 		
+	    
+	    String json = JsonRequests.getContent("http://centralenote.campus.ecp.fr/api/details.php");
+	    
 		// Fill Table
 		TableLayout tl = (TableLayout)findViewById(R.id.tableLayoutMain);
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 1; i++) {
 			TableRow tr = new TableRow(this);
 			TextView textview = new TextView(this);
-			textview.setText("coucou");
+			textview.setText(json);
 			tr.addView(textview);
 			tl.addView(tr);
 		}

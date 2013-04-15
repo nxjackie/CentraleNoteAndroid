@@ -35,6 +35,9 @@ public class AddPersonActivity extends Activity {
 	    AddNewNameButton.setOnClickListener(new View.OnClickListener(){
 	    	 @Override
 		        public void onClick(View v) {
+	    		 
+	    		 
+	    		 
 		    		/*
 		    		 * 
 		    		 * Ici executer la page http://centralenote.campus.ecp.fr/api/add_user.php?n='nomdeluser'
