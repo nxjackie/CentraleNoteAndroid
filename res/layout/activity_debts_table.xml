@@ -9,7 +9,8 @@
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Etat des comptes" />
+        android:text="Etat des comptes"
+        android:textAppearance="?android:attr/textAppearanceLarge" />/>
 
     <ScrollView
         android:id="@+id/scrollViewMain"

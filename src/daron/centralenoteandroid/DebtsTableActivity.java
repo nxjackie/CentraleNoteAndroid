@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.TableLayout.LayoutParams;
 import daron.centralenoteandroid.JsonRequests.GetDebtsTable;
 import daron.centralenoteandroid.Model.User;
 
@@ -53,8 +54,10 @@ public class DebtsTableActivity extends Activity {
 				TableRow tr = new TableRow(this);
 				TextView nameTextView = new TextView(this);
 				nameTextView.setText(user.getName());
+				nameTextView.setTextSize(20);
 				TextView debtTextView = new TextView(this);
 				debtTextView.setText(user.getDebt());
+				debtTextView.setTextSize(20);
 				tr.addView(nameTextView);
 				tr.addView(debtTextView);
 				tl.addView(tr);
