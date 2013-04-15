@@ -1,16 +1,16 @@
 package daron.centralenoteandroid;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -61,9 +61,6 @@ public class DetailsActivity extends Activity {
 			for (Transaction transaction : transactions) {
 				TableRow tr = new TableRow(this);
 				
-				TextView dateTransaction = new TextView(this);
-				dateTransaction.setText(transaction.getDate());
-				
 				TextView emitterTransaction = new TextView(this);
 				emitterTransaction.setText(transaction.getEmitter());
 				
@@ -76,24 +73,59 @@ public class DetailsActivity extends Activity {
 				TextView commentTransaction = new TextView(this);
 				commentTransaction.setText(transaction.getComment());
 				
-				tr.addView(dateTransaction);
-				tr.addView(emitterTransaction);
-				tr.addView(receiverTransaction);
-				tr.addView(amountTransaction);
-				tr.addView(commentTransaction);
-				
-				tl.addView(tr);
+				TextView removeTransaction = new TextView(this);
+				removeTransaction.setText("toggle");
 				
 				final Transaction transaction2 = transaction;
+				toggleColor(tr, transaction2);
 				
-				tr.setOnClickListener(new View.OnClickListener() {
+				removeTransaction.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						try {
+							
+							String name = new GetStringFromUrl().execute("http://centralenote.campus.ecp.fr/api/suppr.php?n=" + transaction2.getId()).get();
+							if (Integer.parseInt(name) == 1) {
+								Toast.makeText(getApplicationContext(), "Votre requête a bien été effectuée.", Toast.LENGTH_LONG).show();
+								transaction2.changeDeleted();
+								TableRow tr = (TableRow)v.getParent();
+								Log.v("hello", transaction2.getDeleted());
+								toggleColor(tr, transaction2);
+							} else
+								Toast.makeText(getApplicationContext(), "Une erreur est survenue.", Toast.LENGTH_LONG).show();
+
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ExecutionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				});
+				
+				final OnClickListener ToastOnClikcListener = new View.OnClickListener() {
 			        @Override
 			        public void onClick(View v) {
 			        	
 						
 			        	Toast.makeText(getApplicationContext(), "Date : " + transaction2.getDate() + "\n Emetteur : " + transaction2.getEmitter() + "\n Beneficiaire : " + transaction2.getReceiver() + "\n Montant : " + transaction2.getAmount() + "\n Commentaire : " + transaction2.getComment() + "\n Ip : " + transaction2.getIp(), Toast.LENGTH_LONG).show();
 			        }
-			      });
+			    };
+			      
+			    emitterTransaction.setOnClickListener(ToastOnClikcListener);
+			    receiverTransaction.setOnClickListener(ToastOnClikcListener);
+			    amountTransaction.setOnClickListener(ToastOnClikcListener);
+			    commentTransaction.setOnClickListener(ToastOnClikcListener);
+				
+				tr.addView(emitterTransaction);
+				tr.addView(receiverTransaction);
+				tr.addView(amountTransaction);
+				//tr.addView(commentTransaction);
+				tr.addView(removeTransaction);
+				
+				tl.addView(tr);
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -110,6 +142,22 @@ public class DetailsActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.details, menu);
 		return true;
+	}
+	
+	private void toggleColor(TableRow tr, Transaction transaction) {
+		if (Integer.parseInt(transaction.getDeleted()) == 1) {
+			for (int i = 0; i < tr.getChildCount(); i++) {
+				TextView child = (TextView)tr.getChildAt(i);
+				child.setTextColor(Color.GRAY);
+
+			}
+		} else {
+			for (int i = 0; i < tr.getChildCount(); i++) {
+				TextView child = (TextView)tr.getChildAt(i);
+				child.setTextColor(Color.BLACK);
+
+			}
+		}
 	}
 
 }

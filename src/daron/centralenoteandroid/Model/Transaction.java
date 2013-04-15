@@ -38,7 +38,7 @@ public class Transaction {
 		long ts = Long.parseLong(_date);
 		Date date2 = new Date(ts * 1000);
 		
-		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd \n hh:mm:ss");
 		String date3 = format2.format(date2);
 		
 		
@@ -85,4 +85,7 @@ public class Transaction {
 		_ip = ip;
 	}
 	
+	public void changeDeleted() {
+		_deleted = Integer.toString(1 - Integer.parseInt(_deleted));
+	}
 }
