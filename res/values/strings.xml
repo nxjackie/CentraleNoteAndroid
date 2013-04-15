@@ -11,5 +11,7 @@
     <string name="add_name">Entrez ici le nom de la nouvelle personne</string>
     <string name="retour">Retour</string>
     <string name="ajouter">Ajouter</string>
+    <string name="nom_ajoute">Le nouvel utilisateur a bien été ajouté</string>
+    <string name="nom_non_ajoute">L\'utilisateur est déjà sur la CentraleNote</string>
 
 </resources>
