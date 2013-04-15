@@ -8,5 +8,8 @@
     <string name="title_activity_add_person">AddPersonActivity</string>
     <string name="title_activity_add_transaction">AddTransactionActivity</string>
     <string name="title_activity_details">DetailsActivity</string>
+    <string name="add_name">Entrez ici le nom de la nouvelle personne</string>
+    <string name="retour">Retour</string>
+    <string name="ajouter">Ajouter</string>
 
 </resources>

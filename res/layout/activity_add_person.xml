@@ -8,15 +8,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".AddPersonActivity" >
 
-    <TextView
+    <EditText
+        android:id="@+id/name_new_user"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="46dp"
+        android:ems="10" />
 
-   	<Button 
-	    android:id="@+id/button_return_home_from_person"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:text="Retour" />
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/add_name"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/button_return_home_from_person"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignParentBottom="true"
+        android:height="100dp"
+        android:text="@string/retour" />
+
+    <Button
+        android:id="@+id/add_new_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_return_home_from_person"
+        android:layout_alignLeft="@+id/button_return_home_from_person"
+        android:layout_alignRight="@+id/button_return_home_from_person"
+        android:layout_marginBottom="47dp"
+        android:height="100dp"
+        android:text="@string/ajouter" />
 
 </RelativeLayout>

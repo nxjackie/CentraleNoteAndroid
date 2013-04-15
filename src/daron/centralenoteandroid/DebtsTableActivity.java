@@ -15,7 +15,7 @@ import android.widget.TextView;
 import daron.centralenoteandroid.JsonRequests.GetDebtsTable;
 
 public class DebtsTableActivity extends Activity {
-	
+
 	private Button AddPersonButton = null;
 	private Button AddTransactionButton = null;
 
@@ -23,10 +23,10 @@ public class DebtsTableActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_debts_table);
-		
+
 		AddPersonButton = (Button)findViewById(R.id.button_add_person);
 		AddTransactionButton = (Button)findViewById(R.id.button_add_transaction);
-		
+
 	    AddPersonButton.setOnClickListener(new View.OnClickListener() {
 	        @Override
 	        public void onClick(View v) {
@@ -34,7 +34,7 @@ public class DebtsTableActivity extends Activity {
 	    		startActivity(i);
 	        }
 	      });
-	    
+
 	    AddTransactionButton.setOnClickListener(new View.OnClickListener() {
 	        @Override
 	        public void onClick(View v) {
@@ -42,7 +42,7 @@ public class DebtsTableActivity extends Activity {
 	    		startActivity(i);
 	        }
 	      });
-		
+
 	    try {
 			List<User> users = new GetDebtsTable().execute("http://centralenote.campus.ecp.fr/api/user.php").get();
 			// Fill Table
@@ -53,7 +53,7 @@ public class DebtsTableActivity extends Activity {
 				textview.setText(user.getName());
 				tr.addView(textview);
 				tl.addView(tr);
-			}	
+			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,7 +63,7 @@ public class DebtsTableActivity extends Activity {
 		}
 	}
 
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
