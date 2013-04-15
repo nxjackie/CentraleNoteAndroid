@@ -1,4 +1,4 @@
-package daron.centralenoteandroid;
+package daron.centralenoteandroid.Model;
 
 public class User {
 	private String _id;

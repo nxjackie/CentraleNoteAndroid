@@ -13,6 +13,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import daron.centralenoteandroid.JsonRequests.GetDebtsTable;
+import daron.centralenoteandroid.Model.User;
 
 public class DebtsTableActivity extends Activity {
 
@@ -45,13 +46,17 @@ public class DebtsTableActivity extends Activity {
 
 	    try {
 			List<User> users = new GetDebtsTable().execute("http://centralenote.campus.ecp.fr/api/user.php").get();
+			
 			// Fill Table
 			TableLayout tl = (TableLayout)findViewById(R.id.tableLayoutMain);
 			for (User user : users) {
 				TableRow tr = new TableRow(this);
-				TextView textview = new TextView(this);
-				textview.setText(user.getName());
-				tr.addView(textview);
+				TextView nameTextView = new TextView(this);
+				nameTextView.setText(user.getName());
+				TextView debtTextView = new TextView(this);
+				debtTextView.setText(user.getDebt());
+				tr.addView(nameTextView);
+				tr.addView(debtTextView);
 				tl.addView(tr);
 			}
 		} catch (InterruptedException e) {

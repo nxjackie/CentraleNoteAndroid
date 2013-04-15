@@ -15,9 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import daron.centralenoteandroid.User;
+import daron.centralenoteandroid.Model.User;
 
 public class GetDebtsTable extends AsyncTask<String, List<String>, List<User>> {
 
