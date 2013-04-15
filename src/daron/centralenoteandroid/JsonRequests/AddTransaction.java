@@ -4,32 +4,39 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.apache.http.message.BasicNameValuePair;
 
-import android.app.Activity;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import daron.centralenoteandroid.Model.User;
 
-public class AddTransaction extends AsyncTask<String, List<String>, List<User>> {
+public class AddTransaction extends AsyncTask<String, List<String>, String> {
 
-	List<User> userList = new ArrayList<User>();
+//	List<User> userList = new ArrayList<User>();
 	private ProgressDialog _dialog;
 	private Context _context;
+	private User _host;
+	private String _comment;
+	private List<User> _profiteurs;
+	private List<String> _debt;
 	
-    public AddTransaction(Activity activity) {
+    public AddTransaction(Context activity, User host, String comment, List<User> profiteurs, List<String> debt) {
         _context = activity;
         _dialog = new ProgressDialog(_context);
+        _host = host;
+        _comment = comment;
+        _profiteurs = profiteurs;
+        _debt = debt; 
     }
 	 
 	@Override
@@ -40,59 +47,36 @@ public class AddTransaction extends AsyncTask<String, List<String>, List<User>> 
 	}
 	
 	@Override
-	protected List<User> doInBackground(String... params) {
-	    StringBuilder url = new StringBuilder(params[0]);
-	    HttpGet geturl = new HttpGet(url.toString());
-	    HttpClient client = new DefaultHttpClient();
-	    HttpResponse response;
+	protected String doInBackground(String... params) {
+	    HttpClient httpclient = new DefaultHttpClient();
+	    HttpPost httppost = new HttpPost(params[0]);
+	    
 	    try {
-	        response = client.execute(geturl);
-	        int status = response.getStatusLine().getStatusCode();
-	        if (status == 200) {
-	            HttpEntity entity = response.getEntity();
-	            String data = EntityUtils.toString(entity);
-	            JSONArray item = new JSONArray(data);
-	            /* Starts function which performs the parsing and stores
-	               All PostItems in a List<PostItem> */
-	            userList = parseJson(item);
-	            return userList;
+	        // Add your data
+	        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+	        nameValuePairs.add(new BasicNameValuePair("nom_avanceur", _host.getId()));
+	        nameValuePairs.add(new BasicNameValuePair("com", _comment));
+	        for (int i = 0; i < _profiteurs.size(); i++) {
+	        	nameValuePairs.add(new BasicNameValuePair("nom_beneficiaire_" + _profiteurs.get(i).getId(), _debt.get(i)));
 	        }
-	    // Catches any errors from the url or JSONObject
-	    } catch (ClientProtocolException clientExcep) {
-	        clientExcep.printStackTrace();
-	    } catch (IOException ioExcep) {
-	        ioExcep.printStackTrace();
-	    } catch (JSONException jsonExcep) {
-	        jsonExcep.printStackTrace();
-	    }
-	        return null;
-	}
-	
-	public static List<User> parseJson(JSONArray item) {
-		
-	    List<User> userList = new ArrayList<User>();
-	    if(item != null) {
-	        try {
-		        for(int counter = 0; counter < item.length(); counter++) {
-		            JSONObject userItem = item.getJSONObject(counter);
-		            User user = new User();
-		            user.setId(userItem.get("id").toString());
-		            user.setName(userItem.get("nom").toString());
-		            user.setDebt(userItem.get("etat").toString());
-		            userList.add(user);
-		        }
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	        Log.v("hello", nameValuePairs.toString());
+	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+	        // Execute HTTP Post Request
+	        HttpResponse response = httpclient.execute(httppost);
+	        return "0";
 
+	    } catch (ClientProtocolException e) {
+	        return "1";
+	    } catch (IOException e) {
+	        return "1";
 	    }
-	    return userList;
+	    
 	}
 	
 	@Override
-	protected void onPostExecute(List<User> users) {
+	protected void onPostExecute(String returnCode) {
 		_dialog.dismiss();
+		
 	}
 }
 	

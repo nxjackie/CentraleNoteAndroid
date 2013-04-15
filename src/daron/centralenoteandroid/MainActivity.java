@@ -10,15 +10,8 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		
-		
 		Intent i = new Intent(this, DebtsTableActivity.class);
 		startActivity(i); 
-		
-		
-		
-		
-		
 		
 	}
 }

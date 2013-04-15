@@ -31,7 +31,7 @@ public final class R {
         public static final int button_add_transaction=0x7f080009;
         public static final int button_return_home_from_person=0x7f080002;
         public static final int button_return_home_from_transaction=0x7f080008;
-        public static final int editText1=0x7f080005;
+        public static final int editText_comment=0x7f080005;
         public static final int name_new_user=0x7f080000;
         public static final int scrollViewMain=0x7f08000b;
         public static final int spinner_host=0x7f080004;
