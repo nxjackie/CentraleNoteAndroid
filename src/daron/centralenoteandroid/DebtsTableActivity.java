@@ -20,6 +20,7 @@ public class DebtsTableActivity extends Activity {
 
 	private Button AddPersonButton = null;
 	private Button AddTransactionButton = null;
+	private Button ViewTransactionsButton = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class DebtsTableActivity extends Activity {
 
 		AddPersonButton = (Button)findViewById(R.id.button_add_person);
 		AddTransactionButton = (Button)findViewById(R.id.button_add_transaction);
+		ViewTransactionsButton = (Button)findViewById(R.id.button_view_transactions);
 
 	    AddPersonButton.setOnClickListener(new View.OnClickListener() {
 	        @Override
@@ -41,6 +43,14 @@ public class DebtsTableActivity extends Activity {
 	        @Override
 	        public void onClick(View v) {
 	    		Intent i = new Intent(DebtsTableActivity.this, AddTransactionActivity.class);
+	    		startActivity(i);
+	        }
+	      });
+	    
+	    ViewTransactionsButton.setOnClickListener(new View.OnClickListener() {
+	        @Override
+	        public void onClick(View v) {
+	    		Intent i = new Intent(DebtsTableActivity.this, ViewTransactionsActivity.class);
 	    		startActivity(i);
 	        }
 	      });

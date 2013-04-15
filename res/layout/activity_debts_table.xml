@@ -24,17 +24,24 @@
             android:layout_height="wrap_content" >
         </TableLayout>
     </ScrollView>
+
    	<LinearLayout
-	    android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height="match_parent"
-	    android:layout_weight="5" >
+   	    android:layout_width="fill_parent"
+   	    android:layout_height="74dp"
+   	    android:orientation="horizontal" >
 	    
 	    <Button 
 		    android:id="@+id/button_add_person"
 		    android:layout_width="wrap_content"
 		    android:layout_height="fill_parent"
 		    android:text="Ajouter une personne"
+		    android:layout_weight="1" />
+	    
+		<Button 
+		    android:id="@+id/button_view_transactions"
+		    android:layout_width="wrap_content"
+		    android:layout_height="fill_parent"
+		    android:text="Voir les transactions"
 		    android:layout_weight="1" />
 	     
 	    <Button 
