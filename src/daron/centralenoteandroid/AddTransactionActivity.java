@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,8 +18,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.util.Log;
-
 import daron.centralenoteandroid.JsonRequests.AddTransaction;
 import daron.centralenoteandroid.JsonRequests.GetDebtsTable;
 import daron.centralenoteandroid.Model.User;
@@ -99,6 +98,20 @@ public class AddTransactionActivity extends Activity {
 				Button delete = new Button(v.getContext());
 				delete.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1f));
 				delete.setText("x");
+				delete.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						Log.v("hello", v.toString());
+						TableRow tr = (TableRow)v.getParent();
+						Log.v("hellorow", tr.toString());
+						TableLayout tl = (TableLayout)tr.getParent();
+						Log.v("hellolayout", tl.toString());
+						tl.removeView(tr);
+						rowList.remove(tr);
+					}
+					
+				});
 				tr.addView(delete);
 				rowList.add(tr);
 				TableLayoutProfiteur.addView(tr);
