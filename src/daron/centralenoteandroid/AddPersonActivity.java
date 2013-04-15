@@ -1,5 +1,8 @@
 package daron.centralenoteandroid;
 
+import java.util.concurrent.ExecutionException;
+
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +10,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+import daron.centralenoteandroid.JsonRequests.GetStringFromUrl;
 
 public class AddPersonActivity extends Activity {
 
@@ -17,10 +22,6 @@ public class AddPersonActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_person);
-		
-		EditText tonEdit = (EditText)findViewById(R.id.name_new_user);
-		String name_new_user = tonEdit.getText().toString();
-		
 		
 		ReturnHomeButton = (Button)findViewById(R.id.button_return_home_from_person);
 	    ReturnHomeButton.setOnClickListener(new View.OnClickListener() {
@@ -36,19 +37,31 @@ public class AddPersonActivity extends Activity {
 	    	 @Override
 		        public void onClick(View v) {
 	    		 
+	    		 EditText tonEdit = (EditText)findViewById(R.id.name_new_user);
+	    		 String name_new_user = tonEdit.getText().toString();
+	    			
 	    		 
-	    		 
-		    		/*
-		    		 * 
-		    		 * Ici executer la page http://centralenote.campus.ecp.fr/api/add_user.php?n='nomdeluser'
-		    		 * avec 'nomdeluser' ayant pour valeur name_new_user
-		    		 *  
-		    		 *  En suite faire un retour sous forme de message (bulle) en  fonction du contenu
-		    		 *  Si 1 : le nom 'nomdeluser' a bien été ajouté
-		    		 *  Si 0 : le nom 'nomdeluser' existe déjà
-		    		 *  
-		    		 */
-		        }
+	    		 String answer = "0";
+		    		 try {
+						answer = new GetStringFromUrl().execute("http://centralenote.campus.ecp.fr/api/add_user.php?n=" + name_new_user).get();
+												
+					} catch (InterruptedException e) {
+						// Auto-generated catch block
+						e.printStackTrace();
+					} catch (ExecutionException e) {
+						// Auto-generated catch block
+						e.printStackTrace();
+					}
+		    		 
+			    	 if(Integer.parseInt(answer) == 1){
+			    		 Toast.makeText(getApplicationContext(), getString(R.string.nom_ajoute), Toast.LENGTH_LONG).show();
+			    	 }
+			    	 else{
+			    		 Toast.makeText(getApplicationContext(), getString(R.string.nom_non_ajoute), Toast.LENGTH_LONG).show();
+			    	 }
+	    	 	}
+	    	 
+	    	 
 	    });
 	    
 	    
