@@ -58,6 +58,18 @@ public class DebtsTableActivity extends Activity {
 				tr.addView(nameTextView);
 				tr.addView(debtTextView);
 				tl.addView(tr);
+				final String idu = user.getId();
+				
+				tr.setOnClickListener(new View.OnClickListener() {
+			        @Override
+			        public void onClick(View v) { 
+			    		Intent i = new Intent(DebtsTableActivity.this, DetailsActivity.class);
+			    		i.putExtra("id", idu);
+			    		startActivity(i);
+			        }
+			      });
+				
+				
 			}
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

@@ -9,8 +9,36 @@
     tools:context=".DetailsActivity" >
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
+ <ScrollView
+        android:id="@+id/scrollViewDetails"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:layout_gravity="center"
+        android:layout_weight="5.44"
+        android:clickable="true"
+        android:minWidth="200dp"
+        android:padding="10dp"
+        android:scrollbars="@null" >
+
+        <TableLayout
+            android:id="@+id/tableLayoutDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="32dip">
+
+        </TableLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/back_to_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/retour" />
 
 </RelativeLayout>
